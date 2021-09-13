@@ -1,0 +1,16 @@
+<div style="display: flex; flex-direction: row; text-align: center; align-items: center; justify-content: center; width: 100vw; height: 100vh;">
+  <form action="" method="POST">
+    <label>Select an account</label>
+    <select id="email" name="email">
+      <%= for account <- @accounts do %>
+        <option value="<%= account["email"] %>">
+          <%= account["email"] %>
+        </option>
+      <% end %>
+    </select>
+
+    <input type="hidden" name="SAMLRequest" value="<%= @saml_request %>" />
+    <input type="hidden" name="RelayState" value="<%= @relay_state %>" />
+    <input type="submit" value="Login" />
+  </form>
+</div>
