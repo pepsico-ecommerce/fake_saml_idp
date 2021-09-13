@@ -29,9 +29,21 @@ defmodule FakeSamlIdp.Options do
 
   This will also read and decode the public certificate and private key,
   bailing out early if any errors are encountered.
+
+  ## Runtime Config
+
+  If you'd like to configure the IDP at runtime, you may instead supply
+  an MFA tuple, which will be invoked to generate options on each request.
+  This MFA should return a keyword list of options.
   """
-  @spec new(Keyword.t()) :: t()
-  def new(opts) do
+  @spec new(mfa() | Keyword.t()) :: t()
+  def new(_mfa = {module, function, args}) do
+    module
+    |> apply(function, args)
+    |> new()
+  end
+
+  def new(opts) when is_list(opts) do
     opts = struct!(__MODULE__, opts)
 
     unless map_size(opts.accounts) > 0 do
