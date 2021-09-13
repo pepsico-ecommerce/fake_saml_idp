@@ -83,7 +83,7 @@ defmodule FakeSamlIdp.Controller do
     end
   end
 
-  defp sign_xml(xml, %Options{public_cert: {_, cert}, private_key: key}) do
+  defp sign_xml(xml, %Options{public_cert: cert, private_key: key}) do
     :xmerl_dsig.sign(xml, key, cert)
   end
 end

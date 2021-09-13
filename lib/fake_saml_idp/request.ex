@@ -16,18 +16,18 @@ defmodule FakeSamlIdp.Request do
           later: DateTime.t()
         }
 
-  @enforce_keys [:urn, :dest, :cert]
-  defstruct urn: nil, dest: nil, cert: nil
+  @enforce_keys [:id, :urn, :dest, :cert, :now, :later]
+  defstruct [:id, :urn, :dest, :cert, :now, :later]
 
-  @spec parse(xml()) :: {:ok, t()} | {:error, String.t()}
-  def parse(saml_request, %Options{public_cert: {plaintext, _decoded}}) do
+  @spec parse(xml(), Options.t()) :: {:ok, t()} | {:error, String.t()}
+  def parse(saml_request, %Options{public_cert: cert}) do
     with {:ok, id} <- xpath(saml_request, ~x"//saml:AuthnRequest/@ID"),
          {:ok, urn} <- xpath(saml_request, ~x"//saml:Issuer/text()"),
          {:ok, dest} <- xpath(saml_request, ~x"//samlp:AuthnRequest/@AssertionConsumerServiceURL") do
       now = DateTime.utc_now()
       later = DateTime.add(now, 120, :second)
 
-      {:ok, %__MODULE__{id: id, urn: urn, dest: dest, cert: plaintext, now: now, later: later}}
+      {:ok, %__MODULE__{id: id, urn: urn, dest: dest, cert: cert, now: now, later: later}}
     end
   end
 

@@ -13,7 +13,7 @@ defmodule FakeSamlIdp.Options do
 
   @type t :: %__MODULE__{
           enabled: boolean(),
-          public_cert: {plaintext :: String.t(), decoded :: binary()},
+          public_cert: binary(),
           private_key: term(),
           accounts: [%{String.t() => map()}]
         }
@@ -21,8 +21,7 @@ defmodule FakeSamlIdp.Options do
   defstruct enabled: true,
             public_cert: nil,
             private_key: nil,
-            accounts: %{},
-            resolved: %{}
+            accounts: []
 
   @doc """
   Construct an `%Options{}` struct.
@@ -58,23 +57,14 @@ defmodule FakeSamlIdp.Options do
       raise "must provide both a public certificate and private key"
     end
 
-    plaintext =
+    public_cert =
       opts.public_cert
-      |> read_file!()
-      |> String.replace("-----BEGIN CERTIFICATE-----", "")
-      |> String.replace("-----END CERTIFICATE-----", "")
-      |> String.trim()
-      |> String.replace("\n", "")
-
-    decoded =
-      plaintext
+      |> public_cert_contents()
       |> Base.decode64()
       |> case do
         {:ok, decoded} -> decoded
         :error -> raise("unable to decode public certificate")
       end
-
-    public_cert = {plaintext, decoded}
 
     private_key =
       opts.private_key
@@ -92,6 +82,17 @@ defmodule FakeSamlIdp.Options do
       end
 
     %{opts | public_cert: public_cert, private_key: private_key}
+  end
+
+  @doc false
+  @spec public_cert_contents(Path.t()) :: String.t()
+  def public_cert_contents(path) do
+    path
+    |> read_file!()
+    |> String.replace("-----BEGIN CERTIFICATE-----", "")
+    |> String.replace("-----END CERTIFICATE-----", "")
+    |> String.trim()
+    |> String.replace("\n", "")
   end
 
   defp read_file!(path) do
