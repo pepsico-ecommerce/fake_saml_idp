@@ -22,6 +22,7 @@ defmodule FakeSamlIdp.MixProject do
   defp deps do
     [
       {:esaml, "~> 4.2"},
+      {:ex_doc, "~> 0.24", only: :dev},
       {:plug, "~> 1.12"},
       {:sweet_xml, "~> 0.7"}
     ]

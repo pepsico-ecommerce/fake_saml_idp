@@ -59,7 +59,7 @@ defmodule FakeSamlIdp.Options do
 
     public_cert =
       opts.public_cert
-      |> public_cert_contents()
+      |> public_cert_contents!()
       |> Base.decode64()
       |> case do
         {:ok, decoded} -> decoded
@@ -85,8 +85,8 @@ defmodule FakeSamlIdp.Options do
   end
 
   @doc false
-  @spec public_cert_contents(Path.t()) :: String.t()
-  def public_cert_contents(path) do
+  @spec public_cert_contents!(Path.t()) :: String.t()
+  def public_cert_contents!(path) do
     path
     |> read_file!()
     |> String.replace("-----BEGIN CERTIFICATE-----", "")
