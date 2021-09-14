@@ -16,18 +16,18 @@ defmodule Mix.Tasks.FakeSamlIdp.GenerateCert do
     email: {"Email", "email@pepsico.com"}
   ]
 
+  @out_file "/tmp/cert_request.ini"
+
   @impl true
   def run([]) do
-    out_file = "/tmp/cert_request.ini"
-
     assigns =
       for {field, {message, default}} <- @cert_request_fields, into: %{} do
         {field, prompt(message, default)}
       end
 
     cert_request = render(assigns)
-    File.write!(out_file, cert_request)
-    run(["--req", out_file])
+    File.write!(@out_file, cert_request)
+    run(["--req", @out_file])
   end
 
   def run(["--req", req_file]) do
@@ -51,6 +51,9 @@ defmodule Mix.Tasks.FakeSamlIdp.GenerateCert do
       "-config",
       req_file
     ])
+
+    # clean up if we used the template
+    File.rm(@out_file)
 
     Mix.shell().info("Certificate and key files generated! Saved to \n")
     Mix.shell().info("  #{cert_file}")

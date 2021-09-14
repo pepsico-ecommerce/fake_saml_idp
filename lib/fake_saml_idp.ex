@@ -106,6 +106,10 @@ defmodule FakeSamlIdp do
 
       mix fake_saml_idp.generate_metadata "/path/to/public/cert"
 
+  This will generate an XML metadata file that assumes your fake SAML IDP will be
+  mounted at `/sso/fake_idp`. If this is **not** the case, make sure to edit the
+  `SingleSignOnService` and `SingleLogoutService` endpoints accordingly.
+
   If you need a public cert and private key as well, you can use the other mix task
 
       mix fake_saml_idp.generate_cert

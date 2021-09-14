@@ -17,8 +17,6 @@ defmodule FakeSamlIdp.Router do
 
   post "/handle_login", do: Controller.handle_login(conn, conn.params)
 
-  post "/logout", do: Controller.handle_logout(conn, conn.params)
-
   match _ do
     send_resp(conn, 404, "Not Found")
   end

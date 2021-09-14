@@ -73,12 +73,6 @@ defmodule FakeSamlIdp.Controller do
     |> halt()
   end
 
-  # TODO: implement logout
-  @spec handle_logout(Plug.Conn.t(), map()) :: Plug.Conn.t()
-  def handle_logout(conn, _params) do
-    send_resp(conn, 500, "Not Implemented")
-  end
-
   # ---
 
   defp find_account(email, %Options{accounts: accounts}) do

@@ -42,7 +42,7 @@ defmodule Example.Router do
       </a>
 
       <%= if @assertion do %>
-        <a href="/sso/auth/signout/fake_idp">
+        <a href="/logout">
           Logout
         </a>
       <% end %>
@@ -57,6 +57,14 @@ defmodule Example.Router do
 
     conn
     |> send_resp(200, body)
+    |> halt()
+  end
+
+  get "/logout" do
+    conn
+    |> configure_session(drop: true)
+    |> put_resp_header("Location", "/")
+    |> send_resp(302, "")
     |> halt()
   end
 
