@@ -2,14 +2,14 @@ defmodule FakeSamlIdp do
   @moduledoc """
   Fake SAML identity provider.
 
-  ## Usage
-
   This app provides a plug, `FakeSamlIdp`, that you can host within your
   existing Plug application to serve as a mock SAML identity provider. It
   will receive well-formed SAML login requests, process them, and return
   a well-formed SAML response on valid input. It also provides a basic login
   page, allowing it to act as a drop-in replacement for a full-featured
   SAML authentication provider.
+
+  ## Usage
 
   In most cases, setup should be as easy as adding
 
