@@ -123,3 +123,8 @@ If you need a public cert and private key as well, you can use the other mix tas
 ```sh
 mix fake_saml_idp.generate_cert
 ```
+
+## Credits
+
+Original idea and implementation (and a bit of black magic) by
+[@cjfreeze](https://github.com/cjfreeze).
