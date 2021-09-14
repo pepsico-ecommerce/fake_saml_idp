@@ -1,0 +1,13 @@
+[ req ]
+default_bits          = 2048
+distinguished_name    = req_distinguished_name
+prompt                = no
+
+[ req_distinguished_name ]
+countryName              = <%= @country %>
+stateOrProvinceName      = <%= @state %>
+localityName             = <%= @locality %>
+organizationName         = <%= @organization %>
+organizationalUnitName   = <%= @division %>
+commonName               = <%= @name %>
+emailAddress             = <%= @email %>

@@ -26,13 +26,15 @@ defmodule Example.Router do
 
   forward "/sso", to: Samly.Router
 
+  # ---
+
   function_from_string(
     :defp,
     :render,
     """
     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100vw; height: 100vh">
       <%= if @assertion do %>
-        <pre><%= inspect(@assertion, pretty: true) %></pre>
+        <pre style="margin-bottom: 1rem"><%= inspect(@assertion, pretty: true) %></pre>
       <% end %>
 
       <a href="/sso/auth/signin/fake_idp">

@@ -1,4 +1,4 @@
-defmodule Mix.Tasks.FakeSamlIdp.GenerateMetadataFile do
+defmodule Mix.Tasks.FakeSamlIdp.GenerateMetadata do
   @moduledoc "Generate an XML SAML metadata file from the given public cert."
   @shortdoc "Generate an XML SAML metadata file."
 
@@ -26,11 +26,11 @@ defmodule Mix.Tasks.FakeSamlIdp.GenerateMetadataFile do
   end
 
   def run(args) do
-    Mix.shell().info("USAGE:  mix fake_saml_idp.generate_metadata_file [/path/to/public/cert]\n")
+    Mix.shell().info("USAGE:  mix fake_saml_idp.generate_metadata </path/to/public/cert>\n")
     Mix.shell().error("expected exactly 1 arg(s), got: #{length(args)}")
     exit({:shutdown, 1})
   end
 
-  @template Path.expand("../../fake_saml_idp/templates/metadata.xml.eex", __DIR__)
+  @template Path.expand("templates/metadata.xml.eex", __DIR__)
   function_from_file(:defp, :render, @template, [:assigns])
 end

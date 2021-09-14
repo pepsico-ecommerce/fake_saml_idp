@@ -104,7 +104,11 @@ defmodule FakeSamlIdp do
   that you're using with `FakeSamlIdp`, or the handshake won't complete. To generate
   a metadata file, you can use the included mix task
 
-      mix fake_saml_idp.generate_metadata_file "/path/to/public/cert"
+      mix fake_saml_idp.generate_metadata "/path/to/public/cert"
+
+  If you need a public cert and private key as well, you can use the other mix task
+
+      mix fake_saml_idp.generate_cert
 
   """
 
