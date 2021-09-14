@@ -45,7 +45,7 @@ defmodule FakeSamlIdp.Options do
   def new(opts) when is_list(opts) do
     opts = struct!(__MODULE__, opts)
 
-    unless map_size(opts.accounts) > 0 do
+    if Enum.empty?(opts.accounts) do
       raise "must provide at least one SAML account"
     end
 

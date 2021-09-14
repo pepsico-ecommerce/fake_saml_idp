@@ -19,9 +19,7 @@
   <saml2:AttributeStatement xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion">
     <%= for {key, value} <- @account do %>
       <saml2:Attribute Name="<%= key %>" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified">
-        <saml2:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">
-          <%= value %>
-        </saml2:AttributeValue>
+        <saml2:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string"><%= value %></saml2:AttributeValue>
       </saml2:Attribute>
     <% end %>
   </saml2:AttributeStatement>

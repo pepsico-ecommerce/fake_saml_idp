@@ -1,9 +1,9 @@
-defmodule FakeSamlIdp.MixProject do
+defmodule Example.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :fake_saml_idp,
+      app: :example,
       version: "0.1.0",
       elixir: "~> 1.12",
       start_permanent: Mix.env() == :prod,
@@ -14,6 +14,7 @@ defmodule FakeSamlIdp.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
+      mod: {Example.Application, []},
       extra_applications: [:logger]
     ]
   end
@@ -21,10 +22,11 @@ defmodule FakeSamlIdp.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:esaml, "~> 4.2"},
-      {:ex_doc, "~> 0.24", only: :dev},
+      {:fake_saml_idp, path: ".."},
       {:plug, "~> 1.12"},
-      {:sweet_xml, "~> 0.6"}
+      {:plug_cowboy, "~> 2.3"},
+      {:cowboy, "~> 2.9", override: true},
+      {:samly, "~> 1.0"}
     ]
   end
 end

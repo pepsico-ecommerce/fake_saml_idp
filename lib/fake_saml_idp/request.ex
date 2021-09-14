@@ -22,7 +22,7 @@ defmodule FakeSamlIdp.Request do
 
   @spec parse(xml()) :: {:ok, t()} | {:error, String.t()}
   def parse(saml_request) do
-    with {:ok, id} <- xpath(saml_request, ~x"//saml:AuthnRequest/@ID"),
+    with {:ok, id} <- xpath(saml_request, ~x"//samlp:AuthnRequest/@ID"),
          {:ok, urn} <- xpath(saml_request, ~x"//saml:Issuer/text()"),
          {:ok, dest} <- xpath(saml_request, ~x"//samlp:AuthnRequest/@AssertionConsumerServiceURL") do
       now = DateTime.utc_now()

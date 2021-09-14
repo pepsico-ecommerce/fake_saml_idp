@@ -9,16 +9,24 @@ defmodule FakeSamlIdp.Controller do
   require Logger
 
   @spec login_form(Plug.Conn.t(), map()) :: Plug.Conn.t()
-  def login_form(conn, _params) do
+  def login_form(conn, %{"SAMLRequest" => saml_request, "RelayState" => relay_state}) do
     options = conn.private[:fake_saml_idp]
 
     resp =
-      %{accounts: options.accounts}
-      |> render_login_form()
-      |> Plug.HTML.html_escape_to_iodata()
+      render_login_form(%{
+        accounts: options.accounts,
+        saml_request: saml_request,
+        relay_state: relay_state
+      })
 
     conn
     |> send_resp(200, resp)
+    |> halt()
+  end
+
+  def login_form(conn, _params) do
+    conn
+    |> send_resp(400, "Bad Request")
     |> halt()
   end
 
@@ -63,6 +71,12 @@ defmodule FakeSamlIdp.Controller do
     conn
     |> send_resp(400, "Bad Request")
     |> halt()
+  end
+
+  # TODO: implement logout
+  @spec handle_logout(Plug.Conn.t(), map()) :: Plug.Conn.t()
+  def handle_logout(conn, _params) do
+    send_resp(conn, 500, "Not Implemented")
   end
 
   # ---

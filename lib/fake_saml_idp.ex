@@ -96,7 +96,6 @@ defmodule FakeSamlIdp do
             metadata_file_location: "/path/to/metadata/file",
             nameid_format: "entity",
             pre_session_create_pipeline: MyApp.SAMLPipeline,
-            # FIXME: check if this is actually required
             signed_envelopes_in_resp: false
           }
         ]

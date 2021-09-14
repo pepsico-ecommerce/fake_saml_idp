@@ -13,9 +13,11 @@ defmodule FakeSamlIdp.Router do
   plug :fetch_query_params
   plug :dispatch
 
-  get "/login", do: Controller.login_form(conn, conn.params)
+  post "/login", do: Controller.login_form(conn, conn.params)
 
-  post "/login", do: Controller.handle_login(conn, conn.params)
+  post "/handle_login", do: Controller.handle_login(conn, conn.params)
+
+  post "/logout", do: Controller.handle_logout(conn, conn.params)
 
   match _ do
     send_resp(conn, 404, "Not Found")
