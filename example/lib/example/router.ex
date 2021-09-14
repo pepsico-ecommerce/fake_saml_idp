@@ -22,7 +22,7 @@ defmodule Example.Router do
 
   forward "/sso/fake_idp",
     to: FakeSamlIdp,
-    init_opts: Application.get_env(:example, FakeSamlIdp)
+    init_opts: {Example.SSOConfig, :load_config, []}
 
   forward "/sso", to: Samly.Router
 
