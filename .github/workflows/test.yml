@@ -10,8 +10,13 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-and-publish:
+  build-and-test:
     runs-on: ubuntu-latest
+    env:
+      MIX_ENV: test
+    defaults:
+      run:
+        working-directory: example
     steps:
       - uses: actions/checkout@v2
       - uses: erlef/setup-beam@v1
@@ -26,12 +31,10 @@ jobs:
           path: |
             deps
             _build
-          key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
+          key: ${{ runner.os }}-example-mix-${{ hashFiles('**/mix.lock') }}
           restore-keys: |
-            ${{ runner.os }}-mix-
+            ${{ runner.os }}-example-mix-
       - name: Run tests
-        env:
-          MIX_ENV: test
         run: |
           chromedriver &
           mix test
