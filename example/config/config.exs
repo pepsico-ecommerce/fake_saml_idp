@@ -14,6 +14,12 @@ config :example, FakeSamlIdp,
       "firstName" => "Admin",
       "lastName" => "User",
       "userId" => "0123456"
+    },
+    %{
+      "email" => "user@example.com",
+      "firstName" => "Standard",
+      "lastName" => "User",
+      "userId" => "6543210"
     }
   ]
 
@@ -39,8 +45,18 @@ config :samly, Samly.Provider,
     }
   ]
 
+# ---
+
 config :example,
   signing_salt: "MiaGcc6lSQO0F7Y+bWrLCEk6h8F2s8NFuSXH8",
   encryption_salt: "FuSXH80qdqW/wRyl867lI394maJiww8ASdS5dys",
   secret_key_base:
     "pdk/uTi1FbxnHy0MV1rLvCQtD7b+Q4EBlowUenS7UdbdRBrSZfkmY/PJJDjqPgaqmFQliFyAvK2jbAN4kGrbJw"
+
+if Mix.env() == :test do
+  config :hound,
+    driver: "chrome_driver",
+    browser: "chrome_headless",
+    app_host: "http://localhost",
+    app_port: 4321
+end

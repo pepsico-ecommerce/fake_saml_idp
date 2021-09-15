@@ -22,10 +22,12 @@ defmodule Example.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      {:cowboy, "~> 2.9", override: true},
       {:fake_saml_idp, path: ".."},
+      {:hound, "~> 1.1", only: :test},
+      {:jason, "~> 1.2"},
       {:plug, "~> 1.12"},
       {:plug_cowboy, "~> 2.3"},
-      {:cowboy, "~> 2.9", override: true},
       {:samly, "~> 1.0"}
     ]
   end
