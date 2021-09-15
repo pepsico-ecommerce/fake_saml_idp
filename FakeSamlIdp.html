@@ -101,14 +101,14 @@ SAML authentication provider.</p><h2 id="module-usage" class="section-heading">
   </span><span class="ss">to</span><span class="p">:</span><span class="w"> </span><span class="nc">FakeSamlIdp</span><span class="p">,</span><span class="w">
   </span><span class="ss">public_cert</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/path/to/public/cert&quot;</span><span class="p">,</span><span class="w">
   </span><span class="ss">private_key</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/path/to/private/key&quot;</span><span class="p">,</span><span class="w">
-  </span><span class="ss">accounts</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="8345563244-1">[</span><span class="w">
-    </span><span class="p" data-group-id="8345563244-2">%{</span><span class="w">
+  </span><span class="ss">accounts</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="8268131977-1">[</span><span class="w">
+    </span><span class="p" data-group-id="8268131977-2">%{</span><span class="w">
       </span><span class="s">&quot;email&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;admin@example.com&quot;</span><span class="p">,</span><span class="w">
       </span><span class="s">&quot;firstName&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;Admin&quot;</span><span class="p">,</span><span class="w">
       </span><span class="s">&quot;lastName&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;User&quot;</span><span class="p">,</span><span class="w">
       </span><span class="s">&quot;userId&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;123456&quot;</span><span class="w">
-    </span><span class="p" data-group-id="8345563244-2">}</span><span class="w">
-  </span><span class="p" data-group-id="8345563244-1">]</span></code></pre><p>to your router.</p><h2 id="module-configuration" class="section-heading">
+    </span><span class="p" data-group-id="8268131977-2">}</span><span class="w">
+  </span><span class="p" data-group-id="8268131977-1">]</span></code></pre><p>to your router.</p><h2 id="module-configuration" class="section-heading">
   <a href="#module-configuration" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Configuration
 </h2>
@@ -119,31 +119,31 @@ when invoking the <code class="inline">forward</code> macro. You may also config
 </span><span class="n">config</span><span class="w"> </span><span class="ss">:my_app</span><span class="p">,</span><span class="w"> </span><span class="nc">FakeSamlIdp</span><span class="p">,</span><span class="w">
   </span><span class="ss">public_cert</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/path/to/public/cert&quot;</span><span class="p">,</span><span class="w">
   </span><span class="ss">private_key</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/path/to/private/key&quot;</span><span class="p">,</span><span class="w">
-  </span><span class="ss">accounts</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="4181179416-1">[</span><span class="w"> </span><span class="n">...</span><span class="w"> </span><span class="p" data-group-id="4181179416-1">]</span><span class="w">
+  </span><span class="ss">accounts</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="9378880364-1">[</span><span class="w"> </span><span class="n">...</span><span class="w"> </span><span class="p" data-group-id="9378880364-1">]</span><span class="w">
 
 </span><span class="c1"># router.ex</span><span class="w">
 
 </span><span class="n">forward</span><span class="w"> </span><span class="s">&quot;/sso/fake_idp&quot;</span><span class="p">,</span><span class="w">
   </span><span class="ss">to</span><span class="p">:</span><span class="w"> </span><span class="nc">FakeSamlIdp</span><span class="p">,</span><span class="w">
-  </span><span class="ss">init_opts</span><span class="p">:</span><span class="w"> </span><span class="nc">Application</span><span class="o">.</span><span class="n">get_env</span><span class="p" data-group-id="4181179416-2">(</span><span class="ss">:my_app</span><span class="p">,</span><span class="w"> </span><span class="nc">FakeSamlIdp</span><span class="p" data-group-id="4181179416-2">)</span></code></pre><p>Additionally, you may provide configuration dynamically at runtime by
+  </span><span class="ss">init_opts</span><span class="p">:</span><span class="w"> </span><span class="nc">Application</span><span class="o">.</span><span class="n">get_env</span><span class="p" data-group-id="9378880364-2">(</span><span class="ss">:my_app</span><span class="p">,</span><span class="w"> </span><span class="nc">FakeSamlIdp</span><span class="p" data-group-id="9378880364-2">)</span></code></pre><p>Additionally, you may provide configuration dynamically at runtime by
 providing an MFA tuple to <code class="inline">:init_opts</code>:</p><pre><code class="makeup elixir"><span class="c1"># router.ex</span><span class="w">
 
 </span><span class="n">forward</span><span class="w"> </span><span class="s">&quot;/sso/fake_idp&quot;</span><span class="p">,</span><span class="w">
   </span><span class="ss">to</span><span class="p">:</span><span class="w"> </span><span class="nc">FakeSamlIdp</span><span class="p">,</span><span class="w">
-  </span><span class="ss">init_opts</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6318325804-1">{</span><span class="nc">RuntimeConfig</span><span class="p">,</span><span class="w"> </span><span class="ss">:load_idp_config</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="6318325804-2">[</span><span class="p" data-group-id="6318325804-2">]</span><span class="p" data-group-id="6318325804-1">}</span><span class="w">
+  </span><span class="ss">init_opts</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2700408720-1">{</span><span class="nc">RuntimeConfig</span><span class="p">,</span><span class="w"> </span><span class="ss">:load_idp_config</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2700408720-2">[</span><span class="p" data-group-id="2700408720-2">]</span><span class="p" data-group-id="2700408720-1">}</span><span class="w">
 
 </span><span class="c1"># my_app.ex</span><span class="w">
 
-</span><span class="kd">defmodule</span><span class="w"> </span><span class="nc">RuntimeConfig</span><span class="w"> </span><span class="k" data-group-id="6318325804-3">do</span><span class="w">
-  </span><span class="na">@config</span><span class="w"> </span><span class="p" data-group-id="6318325804-4">[</span><span class="w">
+</span><span class="kd">defmodule</span><span class="w"> </span><span class="nc">RuntimeConfig</span><span class="w"> </span><span class="k" data-group-id="2700408720-3">do</span><span class="w">
+  </span><span class="na">@config</span><span class="w"> </span><span class="p" data-group-id="2700408720-4">[</span><span class="w">
     </span><span class="ss">public_cert</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;...&quot;</span><span class="p">,</span><span class="w">
     </span><span class="ss">private_key</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;...&quot;</span><span class="w">
-  </span><span class="p" data-group-id="6318325804-4">]</span><span class="w">
+  </span><span class="p" data-group-id="2700408720-4">]</span><span class="w">
 
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">load_idp_config</span><span class="w"> </span><span class="k" data-group-id="6318325804-5">do</span><span class="w">
-    </span><span class="nc">Keyword</span><span class="o">.</span><span class="n">merge</span><span class="p" data-group-id="6318325804-6">(</span><span class="na">@config</span><span class="p">,</span><span class="w"> </span><span class="ss">accounts</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6318325804-7">[</span><span class="n">...</span><span class="p" data-group-id="6318325804-7">]</span><span class="p" data-group-id="6318325804-6">)</span><span class="w">
-  </span><span class="k" data-group-id="6318325804-5">end</span><span class="w">
-</span><span class="k" data-group-id="6318325804-3">end</span></code></pre><p>See <a href="FakeSamlIdp.Options.html"><code class="inline">FakeSamlIdp.Options</code></a> for detailed configuration options.</p><h2 id="module-integrating-with-samly" class="section-heading">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">load_idp_config</span><span class="w"> </span><span class="k" data-group-id="2700408720-5">do</span><span class="w">
+    </span><span class="nc">Keyword</span><span class="o">.</span><span class="n">merge</span><span class="p" data-group-id="2700408720-6">(</span><span class="na">@config</span><span class="p">,</span><span class="w"> </span><span class="ss">accounts</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2700408720-7">[</span><span class="n">...</span><span class="p" data-group-id="2700408720-7">]</span><span class="p" data-group-id="2700408720-6">)</span><span class="w">
+  </span><span class="k" data-group-id="2700408720-5">end</span><span class="w">
+</span><span class="k" data-group-id="2700408720-3">end</span></code></pre><p>See <a href="FakeSamlIdp.Options.html"><code class="inline">FakeSamlIdp.Options</code></a> for detailed configuration options.</p><h2 id="module-integrating-with-samly" class="section-heading">
   <a href="#module-integrating-with-samly" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Integrating with Samly
 </h2>
@@ -152,16 +152,16 @@ Integration with <a href="FakeSamlIdp.html#content"><code class="inline">FakeSam
 
 </span><span class="n">config</span><span class="w"> </span><span class="ss">:samly</span><span class="p">,</span><span class="w"> </span><span class="nc">Samly.Provider</span><span class="p">,</span><span class="w">
   </span><span class="ss">idp_id_from</span><span class="p">:</span><span class="w"> </span><span class="ss">:path_segment</span><span class="p">,</span><span class="w">
-  </span><span class="ss">service_providers</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="7887171629-1">[</span><span class="w">
-    </span><span class="p" data-group-id="7887171629-2">%{</span><span class="w">
+  </span><span class="ss">service_providers</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="7266166809-1">[</span><span class="w">
+    </span><span class="p" data-group-id="7266166809-2">%{</span><span class="w">
       </span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;my_app&quot;</span><span class="p">,</span><span class="w">
       </span><span class="ss">entity_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;urn:myapp.dev:auth-entity&quot;</span><span class="p">,</span><span class="w">
       </span><span class="ss">certfile</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/path/to/public/cert&quot;</span><span class="p">,</span><span class="w">
       </span><span class="ss">keyfile</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/path/to/private/key&quot;</span><span class="w">
-    </span><span class="p" data-group-id="7887171629-2">}</span><span class="w">
-  </span><span class="p" data-group-id="7887171629-1">]</span><span class="p">,</span><span class="w">
-  </span><span class="ss">identity_providers</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="7887171629-3">[</span><span class="w">
-    </span><span class="p" data-group-id="7887171629-4">%{</span><span class="w">
+    </span><span class="p" data-group-id="7266166809-2">}</span><span class="w">
+  </span><span class="p" data-group-id="7266166809-1">]</span><span class="p">,</span><span class="w">
+  </span><span class="ss">identity_providers</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="7266166809-3">[</span><span class="w">
+    </span><span class="p" data-group-id="7266166809-4">%{</span><span class="w">
       </span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;fake_saml_idp&quot;</span><span class="p">,</span><span class="w">
       </span><span class="ss">sp_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;my_app&quot;</span><span class="p">,</span><span class="w">
       </span><span class="ss">base_url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http://localhost:4000/sso&quot;</span><span class="p">,</span><span class="w">
@@ -169,8 +169,8 @@ Integration with <a href="FakeSamlIdp.html#content"><code class="inline">FakeSam
       </span><span class="ss">nameid_format</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;entity&quot;</span><span class="p">,</span><span class="w">
       </span><span class="ss">pre_session_create_pipeline</span><span class="p">:</span><span class="w"> </span><span class="nc">MyApp.SAMLPipeline</span><span class="p">,</span><span class="w">
       </span><span class="ss">signed_envelopes_in_resp</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="w">
-    </span><span class="p" data-group-id="7887171629-4">}</span><span class="w">
-  </span><span class="p" data-group-id="7887171629-3">]</span></code></pre><p>Make sure you're using the same public cert/private key in <code class="inline">:service_providers</code>
+    </span><span class="p" data-group-id="7266166809-4">}</span><span class="w">
+  </span><span class="p" data-group-id="7266166809-3">]</span></code></pre><p>Make sure you're using the same public cert/private key in <code class="inline">:service_providers</code>
 that you're using with <a href="FakeSamlIdp.html#content"><code class="inline">FakeSamlIdp</code></a>, or the handshake won't complete. To generate
 a metadata file, you can use the included mix task</p><pre><code class="makeup elixir"><span class="n">mix</span><span class="w"> </span><span class="n">fake_saml_idp</span><span class="o">.</span><span class="n">generate_metadata</span><span class="w"> </span><span class="s">&quot;/path/to/public/cert&quot;</span></code></pre><p>This will generate an XML metadata file that assumes your fake SAML IDP will be
 mounted at <code class="inline">/sso/fake_idp</code>. If this is <strong>not</strong> the case, make sure to edit the
