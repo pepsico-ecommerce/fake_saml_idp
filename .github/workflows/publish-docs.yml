@@ -18,7 +18,7 @@ jobs:
           elixir-version: '1.12.0'
       - run: mix deps.get
       - run: mix compile
-      - name: cache deps and build
+      - name: Cache dependencies and build output
         uses: actions/cache@v2.1.6
         with:
           path: |
@@ -28,7 +28,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-mix-
       - run: mix docs -f html
-      - name: publish
+      - name: Publish to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
           branch: gh-pages
