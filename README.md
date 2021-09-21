@@ -128,3 +128,5 @@ mix fake_saml_idp.generate_cert
 
 Original idea and implementation (and a bit of black magic) by
 [@cjfreeze](https://github.com/cjfreeze).
+
+(c) 2021 PepsiCo, Inc., all rights reserved.
